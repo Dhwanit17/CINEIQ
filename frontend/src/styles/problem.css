@@ -1,0 +1,84 @@
+/* ============================================================
+   PROBLEM SECTION
+   ============================================================ */
+.problem {
+  padding: 160px 32px;
+  background: var(--bg);
+  position: relative;
+}
+.pullquote {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5.5vw, 80px);
+  line-height: 1.05;
+  letter-spacing: 1px;
+  max-width: 1100px;
+  color: var(--ink);
+}
+.pullquote .strike { text-decoration: line-through; color: var(--ink-faint); }
+.pullquote .hl-red { color: var(--red); }
+.pullquote .hl-amber { color: var(--amber); }
+.pullquote .hl-green { color: var(--phosphor); }
+.pullquote .quote-mark {
+  display: block;
+  font-size: 1.2em;
+  color: var(--phosphor);
+  line-height: 0.5;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.loop-viz {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+@media (max-width: 900px) { .loop-viz { grid-template-columns: 1fr; } }
+
+.loop-viz-text h3 {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--phosphor);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.loop-viz-text p {
+  font-size: 14px;
+  color: var(--ink-dim);
+  margin-bottom: 12px;
+}
+.loop-viz-text p strong { color: var(--ink); font-weight: 500; }
+
+.loop-svg-wrap {
+  aspect-ratio: 1;
+  border: 1px solid var(--border);
+  padding: 24px;
+  position: relative;
+  background:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.loop-svg-wrap::before {
+  content: 'LOOP_TRAP.SVG';
+  position: absolute;
+  top: 10px;
+  left: 16px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--ink-faint);
+}
+.loop-svg-wrap::after {
+  content: '— BREAK —';
+  position: absolute;
+  bottom: 10px;
+  right: 16px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--phosphor);
+  animation: blink 1.2s steps(1) infinite;
+}

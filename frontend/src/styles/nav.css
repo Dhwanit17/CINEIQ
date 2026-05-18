@@ -1,0 +1,77 @@
+/* ============================================================
+   NAV
+   ============================================================ */
+nav.topnav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: backdrop-filter 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+nav.topnav.scrolled {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(10, 10, 10, 0.78);
+  border-bottom: 1px solid var(--border);
+}
+.logo {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--phosphor);
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.6), 0 0 16px rgba(0, 255, 136, 0.3);
+  letter-spacing: 2px;
+  user-select: none;
+  text-decoration: none;
+}
+.logo .dot { color: var(--amber); animation: blink 1.2s steps(1) infinite; }
+
+.navlinks {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.navlinks a {
+  color: var(--ink-dim);
+  text-decoration: none;
+  position: relative;
+  padding: 6px 2px;
+  transition: color 0.2s ease;
+}
+.navlinks a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--phosphor);
+  box-shadow: 0 0 6px var(--phosphor);
+  transition: width 0.3s ease;
+}
+.navlinks a:hover { color: var(--phosphor); }
+.navlinks a:hover::after,
+.navlinks a.active::after { width: 100%; }
+.navlinks a.active { color: var(--phosphor); }
+
+.nav-status {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 1px;
+}
+.nav-status .live { color: var(--phosphor); animation: blink 1.2s steps(1) infinite; }
+
+@media (max-width: 800px) {
+  .navlinks { display: none; }
+  .nav-status { display: none; }
+}

@@ -1,0 +1,40 @@
+/* ============================================================
+   ARCHITECTURE
+   ============================================================ */
+.arch {
+  background: var(--bg);
+  overflow-x: auto;
+}
+.arch-diagram {
+  margin-top: 60px;
+  padding: 40px 20px;
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-color: var(--bg-1);
+  min-height: 420px;
+  overflow-x: auto;
+}
+
+.arch-diagram svg {
+  width: 100%;
+  height: auto;
+  min-width: 880px;
+  display: block;
+}
+
+.arch-node {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.arch-node rect {
+  transition: all 0.3s ease;
+}
+.arch-node:hover rect {
+  fill: rgba(0, 255, 136, 0.08);
+  stroke: var(--phosphor);
+  filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.5));
+}
+.arch-node:hover .arch-label { fill: var(--phosphor); }

@@ -1,0 +1,87 @@
+/* ============================================================
+   FEATURE CARDS
+   ============================================================ */
+.features-grid {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+}
+@media (max-width: 800px) { .features-grid { grid-template-columns: 1fr; } }
+
+.feature {
+  padding: 40px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-1);
+  position: relative;
+  transition: background 0.3s ease;
+  cursor: default;
+}
+.feature:nth-child(2n) { border-right: none; }
+.feature:nth-last-child(-n + 2) { border-bottom: none; }
+@media (max-width: 800px) {
+  .feature { border-right: none; }
+  .feature:not(:last-child) { border-bottom: 1px solid var(--border); }
+}
+
+.feature::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px transparent;
+  transition: box-shadow 0.3s ease;
+}
+.feature:hover {
+  background: rgba(0, 255, 136, 0.02);
+}
+.feature:hover::before {
+  box-shadow: inset 0 0 0 1px var(--border-bright), inset 0 0 40px rgba(0, 255, 136, 0.08);
+}
+
+.feature-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.feature-icon {
+  font-size: 32px;
+  line-height: 1;
+  filter: grayscale(0.3) hue-rotate(80deg);
+}
+.feature-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 2px;
+}
+.feature h3 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  color: var(--ink);
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+.feature p {
+  font-size: 13px;
+  color: var(--ink-dim);
+  margin-bottom: 20px;
+  max-width: 460px;
+}
+.feature-tech {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tech-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--phosphor);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  padding: 3px 8px;
+  letter-spacing: 1px;
+}

@@ -1,0 +1,28 @@
+# --- API ---
+fastapi==0.115.4
+uvicorn[standard]==0.32.0
+pydantic==2.9.2
+
+# --- ML core ---
+numpy==1.26.4
+pandas==2.2.3
+scikit-learn==1.5.2
+scipy==1.14.1
+
+# --- NLP / Sentiment ---
+vaderSentiment==3.3.2
+
+# --- Explainability ---
+lime==0.2.0.1
+
+# --- Tracking ---
+mlflow==2.17.2
+
+# --- Dashboard ---
+streamlit==1.39.0
+plotly==5.24.1
+
+# --- Dev / Tests ---
+pytest==8.3.3
+httpx==0.27.2            # FastAPI TestClient backend
+requests==2.32.3         # for the data downloader

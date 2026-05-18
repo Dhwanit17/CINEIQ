@@ -1,0 +1,31 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Data is downloaded, not committed
+data/ml-100k/
+data/ml-25m/
+data/tmdb/
+data/imdb/
+data/*.zip
+data/*.csv
+
+# Trained artifacts
+artifacts/*.pkl
+artifacts/*.npz
+artifacts/*.joblib
+
+# MLflow
+mlruns/
+
+# Streamlit
+.streamlit/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+.DS_Store

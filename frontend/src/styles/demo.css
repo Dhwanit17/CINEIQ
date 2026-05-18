@@ -1,0 +1,201 @@
+/* ============================================================
+   LIVE DEMO
+   ============================================================ */
+.demo {
+  background: var(--bg);
+}
+.terminal {
+  margin-top: 48px;
+  border: 1px solid var(--border-bright);
+  background: var(--bg-1);
+  box-shadow: 0 0 60px rgba(0, 255, 136, 0.08), inset 0 0 80px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+.terminal-bar {
+  background: var(--bg-2);
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-dim);
+  letter-spacing: 1.5px;
+}
+.terminal-dots {
+  display: flex;
+  gap: 6px;
+}
+.terminal-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+}
+.terminal-dots span:nth-child(1) { background: var(--red); }
+.terminal-dots span:nth-child(2) { background: var(--amber); }
+.terminal-dots span:nth-child(3) { background: var(--phosphor); }
+.terminal-title { flex: 1; text-align: center; }
+.terminal-time { color: var(--phosphor); }
+
+.terminal-body {
+  padding: 28px 32px;
+  min-height: 480px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink);
+}
+.prompt-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.prompt-line .arrow {
+  color: var(--phosphor);
+  font-weight: bold;
+}
+.prompt-line input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+}
+.prompt-line input:focus {
+  border-bottom-color: var(--phosphor);
+}
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background: var(--phosphor);
+  animation: blink 1s steps(1) infinite;
+  vertical-align: middle;
+}
+
+.quick-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-dim);
+  background: transparent;
+  border: 1px solid var(--ink-faint);
+  padding: 6px 12px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+}
+.chip:hover,
+.chip.active {
+  color: var(--bg);
+  background: var(--phosphor);
+  border-color: var(--phosphor);
+  box-shadow: 0 0 12px rgba(0, 255, 136, 0.4);
+}
+
+.demo-output {
+  border-top: 1px dashed var(--border);
+  padding-top: 24px;
+}
+.demo-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-dim);
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+.demo-meta .key { color: var(--amber); }
+.demo-meta .val { color: var(--phosphor); }
+
+.recs {
+  display: grid;
+  gap: 14px;
+}
+.rec {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 20px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+  align-items: center;
+}
+.rec:hover {
+  border-color: var(--border-bright);
+  background: rgba(0, 255, 136, 0.03);
+  transform: translateX(4px);
+}
+.rec-score {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--phosphor);
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+  line-height: 1;
+}
+.rec-score sub { font-size: 12px; color: var(--ink-faint); }
+.rec-info .title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--ink);
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+.rec-info .year {
+  color: var(--amber);
+  font-size: 14px;
+  margin-left: 8px;
+}
+.rec-info .reason {
+  font-size: 12px;
+  color: var(--ink-dim);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+.rec-info .reason .hl { color: var(--phosphor); }
+.rec-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 100px;
+}
+.rec-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  color: var(--ink-dim);
+  letter-spacing: 1px;
+}
+.rec-bar .label { width: 32px; }
+.rec-bar .track {
+  flex: 1;
+  height: 3px;
+  background: var(--bg-2);
+  position: relative;
+}
+.rec-bar .fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--phosphor);
+  box-shadow: 0 0 4px var(--phosphor);
+}
+.rec-bar .fill.amber { background: var(--amber); box-shadow: 0 0 4px var(--amber); }
+
+@media (max-width: 700px) {
+  .rec { grid-template-columns: 50px 1fr; }
+  .rec-bars { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; }
+}
