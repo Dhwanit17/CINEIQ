@@ -96,3 +96,15 @@ class TasteProfileResponse(BaseModel):
     top_cast: list[FeatureWeight]
     top_directors: list[FeatureWeight]
     top_production: list[FeatureWeight]
+
+
+class LimeTermWeight(BaseModel):
+    term: str
+    weight: float
+
+
+class LimeExplainResponse(BaseModel):
+    seed_id: int
+    candidate_id: int
+    terms: list[LimeTermWeight]
+    latency_ms: int

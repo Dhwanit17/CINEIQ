@@ -11,6 +11,7 @@ import traceback
 from dataclasses import dataclass
 
 from cineiq.data.loader import Dataset, load_dataset
+from cineiq.explain.lime_explainer import LimeAttribution, lime_explain_content
 from cineiq.explain.templates import explain
 from cineiq.models.hybrid import HybridEngine
 from cineiq.sentiment.reranker import SentimentReRanker
@@ -185,6 +186,23 @@ class RecommendationService:
             return None
         return {"user_id": user_id, "top_genres": prof.top_genres, "top_keywords": prof.top_keywords,
                 "top_cast": prof.top_cast, "top_directors": prof.top_directors, "top_production": prof.top_production}
+
+    def lime_explain(
+        self,
+        seed_id: int,
+        candidate_id: int,
+        num_features: int = 8,
+        num_samples: int = 1000,
+    ) -> LimeAttribution:
+        assert self.engine is not None and self.dataset is not None
+        return lime_explain_content(
+            seed_id=seed_id,
+            candidate_id=candidate_id,
+            content=self.engine.content,
+            dataset=self.dataset,
+            num_features=num_features,
+            num_samples=num_samples,
+        )
 
 
 def _is_na(v) -> bool:

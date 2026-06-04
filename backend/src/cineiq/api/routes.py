@@ -1,12 +1,16 @@
 """HTTP routes for the CINEIQ API."""
 from __future__ import annotations
 
+import time
+
 from fastapi import APIRouter, HTTPException, Query
 
 from cineiq import __version__
 from cineiq.api.schemas import (
     FeatureWeight,
     HealthResponse,
+    LimeExplainResponse,
+    LimeTermWeight,
     MovieMeta,
     PersonalItem,
     PersonalResponse,
@@ -160,6 +164,38 @@ def explore_user(user_id: int) -> TasteProfileResponse:
         top_cast=as_features(profile["top_cast"]),
         top_directors=as_features(profile["top_directors"]),
         top_production=as_features(profile["top_production"]),
+    )
+
+
+# ---------------------------------------------------------------------------
+# LIME explanation endpoint
+# ---------------------------------------------------------------------------
+
+@router.get("/explain/lime", response_model=LimeExplainResponse, tags=["explain"])
+def lime_explain(
+    seed_id: int = Query(..., description="Seed movie_id"),
+    candidate_id: int = Query(..., description="Candidate movie_id to explain"),
+    num_features: int = Query(8, ge=1, le=20, description="Number of top terms to return"),
+    num_samples: int = Query(1000, ge=100, le=5000, description="LIME perturbation samples (higher = slower but more accurate)"),
+) -> LimeExplainResponse:
+    """LIME attribution for a seed→candidate pair.
+
+    Returns the content-model terms that most influenced the recommendation score.
+    More expensive than /recommend — expect 1-5s response time.
+    """
+    if not service.is_ready:
+        raise HTTPException(503, "service is still warming up")
+    t0 = time.perf_counter()
+    try:
+        attribution = service.lime_explain(seed_id, candidate_id, num_features, num_samples)
+    except (KeyError, RuntimeError) as e:
+        raise HTTPException(404, str(e))
+    latency_ms = int((time.perf_counter() - t0) * 1000)
+    return LimeExplainResponse(
+        seed_id=attribution.seed_id,
+        candidate_id=attribution.candidate_id,
+        terms=[LimeTermWeight(term=t, weight=w) for t, w in attribution.terms],
+        latency_ms=latency_ms,
     )
 
 
