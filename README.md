@@ -14,7 +14,7 @@
 
 **CINE-IQ** is a transparent, production-ready movie recommendation system designed to answer the question every streaming user asks: *"Why was this recommended to me?"* It combines three classical ML techniques — TF-IDF content similarity, NMF collaborative filtering, and SVD matrix factorization — into a weighted hybrid ensemble, then applies a VADER-powered sentiment re-ranker to surface recommendations people actually enjoy. Every result ships with a human-readable explanation and a per-algorithm signal breakdown, replacing the "black box" with a glass box.
 
-Built by **Krish Patel**.
+Built by **Krish Patel, Dhwanit Gajjar and Parth Pardeshi**.
 
 ## Key Features
 
